@@ -1,0 +1,13 @@
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\bin\Release\MatrixCalculator.exe.config
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\bin\Release\MatrixCalculator.exe
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\bin\Release\MatrixCalculator.pdb
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MainWindow.g.cs
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\App.g.cs
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator_MarkupCompile.cache
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator_MarkupCompile.lref
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MainWindow.baml
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator.g.resources
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator.Properties.Resources.resources
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator.csproj.GenerateResource.Cache
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator.exe
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator.pdb
