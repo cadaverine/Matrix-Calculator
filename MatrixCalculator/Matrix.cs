@@ -2,10 +2,47 @@
 
 namespace MatrixCalculator
 {
+    /// <summary>
+    /// Представляет класс объектов математических матриц.
+    /// </summary>
     public class Matrix
     {
+        #region Fields
         private double[,] array2D;
+        #endregion
 
+        #region Properties
+        /// <summary>
+        /// Возвращает количество строк матрицы
+        /// </summary>
+        public int RowsNum
+        {
+            get { return array2D.GetLength(0); }
+        }
+        /// <summary>
+        /// Возвращает количество столбцов матрицы
+        /// </summary>
+        public int ColumnsNum
+        {
+            get { return array2D.GetLength(1); }
+        }
+        #endregion
+
+        #region Indexer
+        /// <summary>
+        /// Определение двумерного индексатора для объектов класса <see cref="Matrix"/>
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <returns></returns>
+        public double this[int i, int j]
+        {
+            get { return array2D[i, j]; }
+            set { array2D[i, j] = value; }
+        }
+        #endregion
+
+        #region Constructor
         public Matrix(int n, int m)
         {
             try
@@ -21,23 +58,15 @@ namespace MatrixCalculator
                 for (int j = 0; j < 0; j++)
                     array2D[i, j] = 0;
         }
+        #endregion
 
-        public double this[int i, int j]
-        {
-            get { return array2D[i, j]; }
-            set { array2D[i, j] = value; }
-        }
-
-        public int RowsNum
-        {
-            get { return array2D.GetLength(0); }
-        }
-
-        public int ColumnsNum
-        {
-            get { return array2D.GetLength(1); }
-        }
-
+        #region operator+
+        /// <summary>
+        /// Перегрузка оператора "+" для реализации сложения объектов класса <see cref="Matrix"/>
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static Matrix operator+(Matrix a, Matrix b)
         {
             try
@@ -62,7 +91,15 @@ namespace MatrixCalculator
                 throw new Exception(ex.Message);
             }
         }
+        #endregion
 
+        #region operator-
+        /// <summary>
+        /// Перегрузка оператора "-" для реализации вычитания объектов класса <see cref="Matrix"/>
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static Matrix operator-(Matrix a, Matrix b)
         {
             try
@@ -87,7 +124,15 @@ namespace MatrixCalculator
                 throw new Exception(ex.Message);
             }
         }
+        #endregion
 
+        #region operator*
+        /// <summary>
+        /// Перегрузка оператора "+" для реализации умножения объектов класса <see cref="Matrix"/>
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static Matrix operator*(Matrix a, Matrix b)
         {
             try
@@ -114,7 +159,13 @@ namespace MatrixCalculator
                 throw new Exception(ex.Message);
             }
         }
+        #endregion
 
+        #region Transpose
+        /// <summary>
+        /// Метод, создающий и возвращающий объект класса <see cref="Matrix"/>, содержащий результат транспонирования исходной матрицы
+        /// </summary>
+        /// <returns></returns>
         public Matrix Transpose()
         {
             Matrix result = new Matrix(this.ColumnsNum, this.RowsNum);
@@ -125,5 +176,6 @@ namespace MatrixCalculator
 
             return result;
         }
+        #endregion
     }
 }

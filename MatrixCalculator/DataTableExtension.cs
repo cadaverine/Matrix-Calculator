@@ -3,8 +3,17 @@ using System.Data;
 
 namespace MatrixCalculator
 {
+    /// <summary>
+    /// Представляет класс методов расширения для объектов класса <see cref="DataTable"/>
+    /// </summary>
     public static class DataTableExtension
     {
+        #region ToMatrix
+        /// <summary>
+        /// Создает и возвращает объект <see cref="Matrix"/> на основе содержимого объекта <see cref="DataTable"/>
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
         public static Matrix ToMatrix(this DataTable table)
         {
 
@@ -23,7 +32,7 @@ namespace MatrixCalculator
                     } 
                 }
             return result;
-
         }
+        #endregion
     }
 }

@@ -2,8 +2,17 @@
 
 namespace MatrixCalculator
 {
+    /// <summary>
+    /// Представляет класс методов расширения для объектов класса <see cref="Matrix"/>
+    /// </summary>
     public static class MatrixExtension
     {
+        #region ToDataTable
+        /// <summary>
+        /// Создает и возвращает объект <see cref="DataTable"/> на основе содержимого объекта <see cref="Matrix"/>
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
         public static DataTable ToDataTable(this Matrix matrix)
         {
             DataTable table = new DataTable();
@@ -19,5 +28,6 @@ namespace MatrixCalculator
 
             return table;
         }
+        #endregion
     }
 }

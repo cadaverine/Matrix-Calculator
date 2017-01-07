@@ -11,3 +11,4 @@ C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\M
 C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator.csproj.GenerateResource.Cache
 C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator.exe
 C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator.pdb
+C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator.csprojResolveAssemblyReference.cache
