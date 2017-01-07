@@ -8,24 +8,20 @@ namespace MatrixCalculator
     public class Matrix
     {
         #region Fields
-        private double[,] array2D;
+        private readonly double[,] _array2D;
         #endregion
 
         #region Properties
         /// <summary>
         /// Возвращает количество строк матрицы
         /// </summary>
-        public int RowsNum
-        {
-            get { return array2D.GetLength(0); }
-        }
+        public int RowsNum => _array2D.GetLength(0);
+
         /// <summary>
         /// Возвращает количество столбцов матрицы
         /// </summary>
-        public int ColumnsNum
-        {
-            get { return array2D.GetLength(1); }
-        }
+        public int ColumnsNum => _array2D.GetLength(1);
+
         #endregion
 
         #region Indexer
@@ -37,26 +33,19 @@ namespace MatrixCalculator
         /// <returns></returns>
         public double this[int i, int j]
         {
-            get { return array2D[i, j]; }
-            set { array2D[i, j] = value; }
+            get { return _array2D[i, j]; }
+            set { _array2D[i, j] = value; }
         }
         #endregion
 
         #region Constructor
         public Matrix(int n, int m)
         {
-            try
-            {
-                array2D = new double[n, m];
-            }
-            catch
-            {
-                throw;
-            }
+            _array2D = new double[n, m];
 
             for (int i = 0; i < 0; i++)
                 for (int j = 0; j < 0; j++)
-                    array2D[i, j] = 0;
+                    _array2D[i, j] = 0;
         }
         #endregion
 
@@ -168,7 +157,7 @@ namespace MatrixCalculator
         /// <returns></returns>
         public Matrix Transpose()
         {
-            Matrix result = new Matrix(this.ColumnsNum, this.RowsNum);
+            Matrix result = new Matrix(ColumnsNum, RowsNum);
 
             for (int i = 0; i < result.RowsNum; i++)
                 for (int j = 0; j < result.ColumnsNum; j++)

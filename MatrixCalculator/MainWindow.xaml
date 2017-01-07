@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:MatrixCalculator"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Матричный калькулятор"
     Width="992.166"
@@ -13,22 +12,21 @@
     mc:Ignorable="d">
     <Window.Resources>
         <Style TargetType="DataGrid">
-            <Setter Property="DataGrid.Width" Value="230" />
-            <Setter Property="DataGrid.Height" Value="206" />
-            <Setter Property="DataGrid.HorizontalAlignment" Value="Left" />
-            <Setter Property="DataGrid.VerticalAlignment" Value="Top" />
-            <Setter Property="DataGrid.CanUserAddRows" Value="False" />
-            <Setter Property="DataGrid.HeadersVisibility" Value="None" />
-            <Setter Property="DataGrid.Width" Value="230" />
-            <Setter Property="DataGrid.RowHeight" Value="20" />
-            <Setter Property="DataGrid.MinColumnWidth" Value="30" />
-            <Setter Property="DataGrid.ColumnWidth" Value="*" />
-            <Setter Property="DataGrid.ItemsSource" Value="{Binding}" />
+            <Setter Property="Width" Value="230" />
+            <Setter Property="Height" Value="206" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="CanUserAddRows" Value="False" />
+            <Setter Property="HeadersVisibility" Value="None" />
+            <Setter Property="RowHeight" Value="20" />
+            <Setter Property="MinColumnWidth" Value="30" />
+            <Setter Property="ColumnWidth" Value="*" />
+            <Setter Property="ItemsSource" Value="{Binding}" />
             <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         </Style>
         <Style TargetType="TextBox">
-            <Setter Property="TextBox.Width" Value="28" />
-            <Setter Property="TextBox.Height" Value="23" />
+            <Setter Property="Width" Value="28" />
+            <Setter Property="Height" Value="23" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="TextWrapping" Value="Wrap" />
@@ -51,21 +49,21 @@
     </Window.Resources>
 
     <Grid Margin="0,0,0,0.5">
-        <DataGrid x:Name="dataGrid_MatrixA" Margin="62,75,0,0" />
-        <DataGrid x:Name="dataGrid_MatrixB" Margin="374,75,0,0" />
-        <DataGrid x:Name="dataGrid_MatrixC" Margin="701,75,0,0" />
+        <DataGrid x:Name="DataGridMatrixA" Margin="62,75,0,0" />
+        <DataGrid x:Name="DataGridMatrixB" Margin="374,75,0,0" />
+        <DataGrid x:Name="DataGridMatrixC" Margin="701,75,0,0" />
         <StackPanel
             Width="47"
             Height="auto"
             Margin="311,126,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top">
-            <RadioButton x:Name="radioButton_Addition" Content="+" />
-            <RadioButton x:Name="radioButton_Subtraction" Content="-" />
-            <RadioButton x:Name="radioButton_Multiplication" Content="*" />
+            <RadioButton x:Name="RadioButtonAddition" Content="+" />
+            <RadioButton x:Name="RadioButtonSubtraction" Content="-" />
+            <RadioButton x:Name="RadioButtonMultiplication" Content="*" />
         </StackPanel>
         <TextBlock
-            x:Name="textBlock_MatrixA"
+            x:Name="TextBlockMatrixA"
             Width="77"
             Height="34"
             Margin="62,29,0,0"
@@ -74,15 +72,15 @@
             Text="Размерность матрицы А:"
             TextWrapping="Wrap" />
         <TextBox
-            x:Name="textBox_RowsNum_MatrixA"
+            x:Name="TextBoxRowsNumMatrixA"
             Margin="147,33,0,0"
             TabIndex="0" />
         <TextBox
-            x:Name="textBox_ColumnsNum_MatrixA"
+            x:Name="TextBoxColumnsNumMatrixA"
             Margin="197,33,0,0"
             TabIndex="1" />
         <Label
-            x:Name="label_symbolX_MatrixA"
+            x:Name="LabelSymbolXMatrixA"
             Width="22"
             Margin="175,29,0,0"
             HorizontalAlignment="Left"
@@ -90,14 +88,14 @@
             HorizontalContentAlignment="Center"
             Content="х" />
         <Button
-            x:Name="button_Ok_MatrixA"
+            x:Name="ButtonOkMatrixA"
             Width="50"
             Margin="242,36,0,0"
-            Click="button_Ok_MatrixA_Click"
+            Click="ButtonOkMatrixA_Click"
             Content="ОК"
             TabIndex="2" />
         <TextBlock
-            x:Name="textBlock_MatrixB"
+            x:Name="TextBlockMatrixB"
             Width="77"
             Height="34"
             Margin="374,29,0,0"
@@ -106,15 +104,15 @@
             Text="Размерность матрицы B:"
             TextWrapping="Wrap" />
         <TextBox
-            x:Name="textBox_RowsNum_MatrixB"
+            x:Name="TextBoxRowsNumMatrixB"
             Margin="459,33,0,0"
             TabIndex="3" />
         <TextBox
-            x:Name="textBox_ColumnsNum_MatrixB"
+            x:Name="TextBoxColumnsNumMatrixB"
             Margin="509,33,0,0"
             TabIndex="4" />
         <Label
-            x:Name="label_symbolX_MatrixB"
+            x:Name="LabelSymbolXMatrixB"
             Width="22"
             Margin="487,29,0,0"
             HorizontalAlignment="Left"
@@ -122,105 +120,105 @@
             HorizontalContentAlignment="Center"
             Content="х" />
         <Button
-            x:Name="button_Ok_MatrixB"
+            x:Name="ButtonOkMatrixB"
             Width="49"
             Margin="555,36,0,0"
-            Click="button_Ok_MatrixB_Click"
+            Click="ButtonOkMatrixB_Click"
             Content="ОК"
             TabIndex="5" />
         <Label
-            x:Name="label_MatrixC"
+            x:Name="LabelMatrixC"
             Margin="701,29,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Результирующая матрица C:" />
         <Button
-            x:Name="button_CalculateMatrices"
+            x:Name="ButtonCalculateMatrices"
             Width="60"
             Height="50"
             Margin="622,156,0,0"
-            Click="button_CalculateMatrices_Click"
+            Click="ButtonCalculateMatrices_Click"
             Content="="
             FontSize="22" />
         <Button
-            x:Name="button_Transpose_MatrixA"
+            x:Name="ButtonTransposeMatrixA"
             Width="230"
             Margin="62,295,0,0"
-            Click="button_Transpose_MatrixA_Click"
+            Click="ButtonTransposeMatrixA_Click"
             Content="Транспонировать" />
         <Button
-            x:Name="button_Transpose_MatrixB"
+            x:Name="ButtonTransposeMatrixB"
             Width="230"
             Margin="374,295,0,0"
-            Click="button_Transpose_MatrixB_Click"
+            Click="ButtonTransposeMatrixB_Click"
             Content="Транспонировать" />
         <Button
-            x:Name="button_Transpose_MatrixC"
+            x:Name="ButtonTransposeMatrixC"
             Width="230"
             Margin="701,295,0,0"
-            Click="button_Transpose_MatrixC_Click"
+            Click="ButtonTransposeMatrixC_Click"
             Content="Транспонировать" />
         <Button
-            x:Name="button_Copy_MatrixA"
+            x:Name="ButtonCopyMatrixA"
             Width="112"
             Height="40"
             Margin="62,320,0,0"
-            Click="button_Copy_MatrixA_Click">
+            Click="ButtonCopyMatrixA_Click">
             <TextBlock
                 Text="Копировать в буфер"
                 TextAlignment="Center"
                 TextWrapping="Wrap" />
         </Button>
         <Button
-            x:Name="button_Paste_MatrixA"
+            x:Name="ButtonPasteMatrixA"
             Width="112"
             Height="40"
             Margin="180,320,0,0"
-            Click="button_Paste_MatrixA_Click">
+            Click="ButtonPasteMatrixA_Click">
             <TextBlock
                 Text="Вставить из  буфера"
                 TextAlignment="Center"
                 TextWrapping="Wrap" />
         </Button>
         <Button
-            x:Name="button_Copy_MatrixB"
+            x:Name="ButtonCopyMatrixB"
             Width="112"
             Height="40"
             Margin="374,320,0,0"
-            Click="button_Copy_MatrixB_Click">
+            Click="ButtonCopyMatrixB_Click">
             <TextBlock
                 Text="Копировать в буфер"
                 TextAlignment="Center"
                 TextWrapping="Wrap" />
         </Button>
         <Button
-            x:Name="button_Paste_MatrixB"
+            x:Name="ButtonPasteMatrixB"
             Width="112"
             Height="40"
             Margin="492,320,0,0"
-            Click="button_Paste_MatrixB_Click">
+            Click="ButtonPasteMatrixB_Click">
             <TextBlock
                 Text="Вставить из  буфера"
                 TextAlignment="Center"
                 TextWrapping="Wrap" />
         </Button>
         <Button
-            x:Name="button_Copy_MatrixC"
+            x:Name="ButtonCopyMatrixC"
             Width="112"
             Height="40"
             Margin="701,320,0,0"
-            Click="button_Copy_MatrixC_Click">
+            Click="ButtonCopyMatrixC_Click">
             <TextBlock
                 Text="Копировать в буфер"
                 TextAlignment="Center"
                 TextWrapping="Wrap" />
         </Button>
         <Button
-            x:Name="button_Paste_MatrixC"
+            x:Name="ButtonPasteMatrixC"
             Width="112"
             Height="40"
             Margin="819,320,0,0"
-            Click="button_Paste_MatrixC_Click">
+            Click="ButtonPasteMatrixC_Click">
             <TextBlock
                 Text="Вставить из  буфера"
                 TextAlignment="Center"

@@ -4,7 +4,6 @@ C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\M
 C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MainWindow.g.cs
 C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\App.g.cs
 C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator_MarkupCompile.cache
-C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator_MarkupCompile.lref
 C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MainWindow.baml
 C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator.g.resources
 C:\Users\Чехолин\Documents\Visual Studio 2015\Projects\MatrixCalculator\MatrixCalculator\obj\Release\MatrixCalculator.Properties.Resources.resources

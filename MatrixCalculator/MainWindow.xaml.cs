@@ -8,13 +8,13 @@ namespace MatrixCalculator
     /// <summary>
     /// Главное окно приложения.
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         #region Fields
-        Matrix matrixA;
-        Matrix matrixB;
-        Matrix matrixC;
-        Matrix buffer;
+        Matrix _matrixA;
+        Matrix _matrixB;
+        Matrix _matrixC;
+        Matrix _buffer;
 
         enum Operations
         {
@@ -28,10 +28,10 @@ namespace MatrixCalculator
         public MainWindow()
         {
             InitializeComponent();
-            matrixA = null;
-            matrixB = null;
-            matrixC = null;
-            buffer = null;
+            _matrixA = null;
+            _matrixB = null;
+            _matrixC = null;
+            _buffer = null;
         }
         #endregion
 
@@ -43,16 +43,13 @@ namespace MatrixCalculator
         /// <param name="dataGrid"></param>
         /// <param name="textBoxRowsNum"></param>
         /// <param name="textBoxColumnsNum"></param>
-        private void CreateAndSetMatrix(Matrix matrix, DataGrid dataGrid, TextBox textBoxRowsNum, TextBox textBoxColumnsNum)
+        private void CreateAndSetMatrix(ref Matrix matrix, DataGrid dataGrid, TextBox textBoxRowsNum, TextBox textBoxColumnsNum)
         {
-            int RowsNum = 0;
-            int ColumnsNum = 0;
-
             try
             {
-                RowsNum    = Int32.Parse(textBoxRowsNum.Text);
-                ColumnsNum = Int32.Parse(textBoxColumnsNum.Text);
-                matrix = new Matrix(RowsNum, ColumnsNum);
+                int rowsNum    = Int32.Parse(textBoxRowsNum.Text);
+                int columnsNum = Int32.Parse(textBoxColumnsNum.Text);
+                matrix = new Matrix(rowsNum, columnsNum);
                 DataTable dataTable = matrix.ToDataTable();
                 dataGrid.DataContext = dataTable.DefaultView;
             }
@@ -84,7 +81,7 @@ namespace MatrixCalculator
         {
             try
             {
-                matrixA = GetMatrixFromDataGrid(dataGrid_MatrixA);
+                _matrixA = GetMatrixFromDataGrid(DataGridMatrixA);
             }
             catch (NullReferenceException)
             {
@@ -98,7 +95,7 @@ namespace MatrixCalculator
             }
             try
             {
-                matrixB = GetMatrixFromDataGrid(dataGrid_MatrixB);
+                _matrixB = GetMatrixFromDataGrid(DataGridMatrixB);
             }
             catch (NullReferenceException)
             {
@@ -115,281 +112,274 @@ namespace MatrixCalculator
                 switch (operation)
                 {
                     case Operations.Addition:
-                        matrixC = matrixA + matrixB;
+                        _matrixC = _matrixA + _matrixB;
                         break;
                     case Operations.Subtraction:
-                        matrixC = matrixA - matrixB;
+                        _matrixC = _matrixA - _matrixB;
                         break;
                     case Operations.Multiplication:
-                        matrixC = matrixA * matrixB;
+                        _matrixC = _matrixA * _matrixB;
                         break;
                 }
-                dataGrid_MatrixC.DataContext = matrixC.ToDataTable().DefaultView;
+                DataGridMatrixC.DataContext = _matrixC.ToDataTable().DefaultView;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка");
-                return;
             }
         }
         #endregion
 
-        #region button_Ok_MatrixA_Click
+        #region ButtonOkMatrixA_Click
         /// <summary>
         /// Создает объект класса <see cref="Matrix"/> и устанавливает его в <see cref="DataGrid"/>
-        /// при нажатии кнопки <see cref="button_Ok_MatrixA"/>
+        /// при нажатии кнопки <see cref="ButtonOkMatrixA"/>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Ok_MatrixA_Click(object sender, RoutedEventArgs e)
+        private void ButtonOkMatrixA_Click(object sender, RoutedEventArgs e)
         {
-            CreateAndSetMatrix(this.matrixA, this.dataGrid_MatrixA, textBox_RowsNum_MatrixA, textBox_ColumnsNum_MatrixA);
+            CreateAndSetMatrix(ref _matrixA, DataGridMatrixA, TextBoxRowsNumMatrixA, TextBoxColumnsNumMatrixA);
         }
         #endregion
 
-        #region button_Ok_MatrixB_Click
+        #region ButtonOkMatrixB_Click
         /// <summary>
         /// Создает объект класса <see cref="Matrix"/> и устанавливает его в <see cref="DataGrid"/>
-        /// при нажатии кнопки <see cref="button_Ok_MatrixB"/>
+        /// при нажатии кнопки <see cref="ButtonOkMatrixB"/>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Ok_MatrixB_Click(object sender, RoutedEventArgs e)
+        private void ButtonOkMatrixB_Click(object sender, RoutedEventArgs e)
         {
-            CreateAndSetMatrix(this.matrixB, this.dataGrid_MatrixB, textBox_RowsNum_MatrixB, textBox_ColumnsNum_MatrixB);
+            CreateAndSetMatrix(ref _matrixB, DataGridMatrixB, TextBoxRowsNumMatrixB, TextBoxColumnsNumMatrixB);
         }
         #endregion
 
-        #region button_CalculateMatrices_Click
+        #region ButtonCalculateMatrices_Click
         /// <summary>
         /// Производит одну из выбранных операций над матрицами A и B и помещает результат в <see cref="DataGrid"/> результирующей матрицы С
-        /// при нажатии кнопки <see cref="button_CalculateMatrices"/>
+        /// при нажатии кнопки <see cref="ButtonCalculateMatrices"/>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_CalculateMatrices_Click(object sender, RoutedEventArgs e)
+        private void ButtonCalculateMatrices_Click(object sender, RoutedEventArgs e)
         {
-            if((bool)radioButton_Addition.IsChecked)
+            if((bool)RadioButtonAddition.IsChecked)
             {
                 CalculateMatricesAndSetResult(Operations.Addition);
             }
-            else if ((bool)radioButton_Subtraction.IsChecked)
+            else if ((bool)RadioButtonSubtraction.IsChecked)
             {
                 CalculateMatricesAndSetResult(Operations.Subtraction);
             }
-            else if ((bool)radioButton_Multiplication.IsChecked)
+            else if ((bool)RadioButtonMultiplication.IsChecked)
             {
                 CalculateMatricesAndSetResult(Operations.Multiplication);
             }
         }
         #endregion
 
-        #region button_Transpose_MatrixA_Click
+        #region ButtonTransposeMatrixA_Click
         /// <summary>
-        /// Производит транспонирование матрицы А при нажатии на кнопку <see cref="button_Transpose_MatrixA"/> 
+        /// Производит транспонирование матрицы А при нажатии на кнопку <see cref="ButtonTransposeMatrixA"/> 
         /// и помещает результат в <see cref="DataGrid"/>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Transpose_MatrixA_Click(object sender, RoutedEventArgs e)
+        private void ButtonTransposeMatrixA_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                matrixA = GetMatrixFromDataGrid(dataGrid_MatrixA);
+                _matrixA = GetMatrixFromDataGrid(DataGridMatrixA);
             }
             catch (NullReferenceException)
             {
                 MessageBox.Show("Матрица не была создана.", "Ошибка");
                 return;
             }
-            matrixA = matrixA.Transpose();
+            _matrixA = _matrixA.Transpose();
 
-            dataGrid_MatrixA.DataContext = matrixA.ToDataTable().DefaultView;
+            DataGridMatrixA.DataContext = _matrixA.ToDataTable().DefaultView;
 
-            textBox_RowsNum_MatrixA.Text = matrixA.RowsNum.ToString();
-            textBox_ColumnsNum_MatrixA.Text = matrixA.ColumnsNum.ToString();
+            TextBoxRowsNumMatrixA.Text = _matrixA.RowsNum.ToString();
+            TextBoxColumnsNumMatrixA.Text = _matrixA.ColumnsNum.ToString();
         }
         #endregion
 
-        #region button_Transpose_MatrixB_Click
+        #region ButtonTransposeMatrixB_Click
         /// <summary>
-        /// Производит транспонирование матрицы B при нажатии на кнопку <see cref="button_Transpose_MatrixB"/> 
+        /// Производит транспонирование матрицы B при нажатии на кнопку <see cref="ButtonTransposeMatrixB"/> 
         /// и помещает результат в <see cref="DataGrid"/>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Transpose_MatrixB_Click(object sender, RoutedEventArgs e)
+        private void ButtonTransposeMatrixB_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                matrixB = GetMatrixFromDataGrid(dataGrid_MatrixB);
+                _matrixB = GetMatrixFromDataGrid(DataGridMatrixB);
             }
             catch (NullReferenceException)
             {
                 MessageBox.Show("Матрица не была создана.", "Ошибка");
                 return;
             }
-            matrixB = matrixB.Transpose();
+            _matrixB = _matrixB.Transpose();
 
-            dataGrid_MatrixB.DataContext = matrixB.ToDataTable().DefaultView;
+            DataGridMatrixB.DataContext = _matrixB.ToDataTable().DefaultView;
 
-            textBox_RowsNum_MatrixB.Text = matrixB.RowsNum.ToString();
-            textBox_ColumnsNum_MatrixB.Text = matrixB.ColumnsNum.ToString();
+            TextBoxRowsNumMatrixB.Text = _matrixB.RowsNum.ToString();
+            TextBoxColumnsNumMatrixB.Text = _matrixB.ColumnsNum.ToString();
         }
         #endregion
 
-        #region button_Transpose_MatrixB_Click
+        #region ButtonTransposeMatrixB_Click
         /// <summary>
-        /// Производит транспонирование матрицы B при нажатии на кнопку <see cref="button_Transpose_MatrixB"/> 
+        /// Производит транспонирование матрицы B при нажатии на кнопку <see cref="ButtonTransposeMatrixC"/> 
         /// и помещает результат в <see cref="DataGrid"/>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Transpose_MatrixC_Click(object sender, RoutedEventArgs e)
+        private void ButtonTransposeMatrixC_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                matrixC = GetMatrixFromDataGrid(dataGrid_MatrixC);
+                _matrixC = GetMatrixFromDataGrid(DataGridMatrixC);
             }
             catch (NullReferenceException)
             {
                 MessageBox.Show("Матрица не была создана.", "Ошибка");
                 return;
             }
-            matrixC = matrixC.Transpose();
+            _matrixC = _matrixC.Transpose();
 
-            dataGrid_MatrixC.DataContext = matrixC.ToDataTable().DefaultView;
+            DataGridMatrixC.DataContext = _matrixC.ToDataTable().DefaultView;
         }
         #endregion
 
-        #region button_Copy_MatrixA_Click
+        #region ButtonCopyMatrixA_Click
         /// <summary>
         /// Производит копирование в буфер содержимого <see cref="DataGrid"/> матрицы А
-        /// при нажатии кнопки <see cref="button_Copy_MatrixA"/>
+        /// при нажатии кнопки <see cref="ButtonCopyMatrixA"/>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Copy_MatrixA_Click(object sender, RoutedEventArgs e)
+        private void ButtonCopyMatrixA_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                buffer = GetMatrixFromDataGrid(dataGrid_MatrixA);
+                _buffer = GetMatrixFromDataGrid(DataGridMatrixA);
             }
             catch (NullReferenceException)
             {
                 MessageBox.Show("Матрица не была создана.", "Ошибка");
-                return;
             }
         }
         #endregion
 
-        #region button_Paste_MatrixA_Click
+        #region ButtonPasteMatrixA_Click
         /// <summary>
         /// Производит копирование содержимого буфера в <see cref="DataGrid"/> матрицы А
-        /// при нажатии кнопки <see cref="button_Paste_MatrixA"/>
+        /// при нажатии кнопки <see cref="ButtonPasteMatrixA"/>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Paste_MatrixA_Click(object sender, RoutedEventArgs e)
+        private void ButtonPasteMatrixA_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                dataGrid_MatrixA.DataContext = buffer.ToDataTable().DefaultView;
+                DataGridMatrixA.DataContext = _buffer.ToDataTable().DefaultView;
 
-                textBox_RowsNum_MatrixA.Text = buffer.RowsNum.ToString();
-                textBox_ColumnsNum_MatrixA.Text = buffer.ColumnsNum.ToString();
+                TextBoxRowsNumMatrixA.Text = _buffer.RowsNum.ToString();
+                TextBoxColumnsNumMatrixA.Text = _buffer.ColumnsNum.ToString();
             }
             catch
             {
                 MessageBox.Show("Буфер пуст.", "Ошибка");
-                return;
             }
         }
         #endregion
 
-        #region button_Copy_MatrixB_Click
+        #region ButtonCopyMatrixB_Click
         /// <summary>
         /// Производит копирование в буфер содержимого <see cref="DataGrid"/> матрицы B
-        /// при нажатии кнопки <see cref="button_Copy_MatrixB"/>
+        /// при нажатии кнопки <see cref="ButtonCopyMatrixB"/>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Copy_MatrixB_Click(object sender, RoutedEventArgs e)
+        private void ButtonCopyMatrixB_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                buffer = GetMatrixFromDataGrid(dataGrid_MatrixB);
+                _buffer = GetMatrixFromDataGrid(DataGridMatrixB);
             }
             catch (NullReferenceException)
             {
                 MessageBox.Show("Матрица не была создана.", "Ошибка");
-                return;
             }
         }
         #endregion
 
-        #region button_Paste_MatrixB_Click
+        #region ButtonPasteMatrixB_Click
         /// <summary>
         /// Производит копирование содержимого буфера в <see cref="DataGrid"/> матрицы B
-        /// при нажатии кнопки <see cref="button_Paste_MatrixB"/>
+        /// при нажатии кнопки <see cref="ButtonPasteMatrixB"/>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Paste_MatrixB_Click(object sender, RoutedEventArgs e)
+        private void ButtonPasteMatrixB_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                dataGrid_MatrixB.DataContext = buffer.ToDataTable().DefaultView;
+                DataGridMatrixB.DataContext = _buffer.ToDataTable().DefaultView;
 
-                textBox_RowsNum_MatrixB.Text = buffer.RowsNum.ToString();
-                textBox_ColumnsNum_MatrixB.Text = buffer.ColumnsNum.ToString();
+                TextBoxRowsNumMatrixB.Text = _buffer.RowsNum.ToString();
+                TextBoxColumnsNumMatrixB.Text = _buffer.ColumnsNum.ToString();
             }
             catch
             {
                 MessageBox.Show("Буфер пуст.", "Ошибка");
-                return;
             }
         }
         #endregion
 
-        #region button_Copy_MatrixC_Click
+        #region ButtonCopyMatrixC_Click
         /// <summary>
         /// Производит копирование в буфер содержимого <see cref="DataGrid"/> матрицы C
-        /// при нажатии кнопки <see cref="button_Copy_MatrixC"/>
+        /// при нажатии кнопки <see cref="ButtonCopyMatrixC"/>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Copy_MatrixC_Click(object sender, RoutedEventArgs e)
+        private void ButtonCopyMatrixC_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                buffer = GetMatrixFromDataGrid(dataGrid_MatrixC);
+                _buffer = GetMatrixFromDataGrid(DataGridMatrixC);
             }
             catch (NullReferenceException)
             {
                 MessageBox.Show("Матрица не была создана.", "Ошибка");
-                return;
             }
         }
         #endregion
 
-        #region button_Paste_MatrixC_Click
+        #region ButtonPasteMatrixC_Click
         /// <summary>
         /// Производит копирование содержимого буфера в <see cref="DataGrid"/> матрицы C
-        /// при нажатии кнопки <see cref="button_Paste_MatrixC"/>
+        /// при нажатии кнопки <see cref="ButtonPasteMatrixC"/>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Paste_MatrixC_Click(object sender, RoutedEventArgs e)
+        private void ButtonPasteMatrixC_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                dataGrid_MatrixC.DataContext = buffer.ToDataTable().DefaultView;
+                DataGridMatrixC.DataContext = _buffer.ToDataTable().DefaultView;
             }
             catch
             {
                 MessageBox.Show("Буфер пуст.", "Ошибка");
-                return;
             }
         }
         #endregion
