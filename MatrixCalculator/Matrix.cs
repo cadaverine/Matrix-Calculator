@@ -21,7 +21,6 @@ namespace MatrixCalculator
         /// Возвращает количество столбцов матрицы
         /// </summary>
         public int ColumnsNum => _array2D.GetLength(1);
-
         #endregion
 
         #region Indexer
