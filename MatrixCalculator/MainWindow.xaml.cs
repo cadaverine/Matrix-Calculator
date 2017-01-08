@@ -192,18 +192,22 @@ namespace MatrixCalculator
             try
             {
                 _matrixA = GetMatrixFromDataGrid(DataGridMatrixA);
+
+                _matrixA = _matrixA.Transpose();
+
+                DataGridMatrixA.DataContext = _matrixA.ToDataTable().DefaultView;
+
+                TextBoxRowsNumMatrixA.Text = _matrixA.RowsNum.ToString();
+                TextBoxColumnsNumMatrixA.Text = _matrixA.ColumnsNum.ToString();
             }
             catch (NullReferenceException)
             {
                 MessageBox.Show("Матрица не была создана.", "Ошибка");
-                return;
             }
-            _matrixA = _matrixA.Transpose();
-
-            DataGridMatrixA.DataContext = _matrixA.ToDataTable().DefaultView;
-
-            TextBoxRowsNumMatrixA.Text = _matrixA.RowsNum.ToString();
-            TextBoxColumnsNumMatrixA.Text = _matrixA.ColumnsNum.ToString();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " матрицы А.", "Ошибка");
+            }
         }
         #endregion
 
@@ -219,22 +223,26 @@ namespace MatrixCalculator
             try
             {
                 _matrixB = GetMatrixFromDataGrid(DataGridMatrixB);
+
+                _matrixB = _matrixB.Transpose();
+
+                DataGridMatrixB.DataContext = _matrixB.ToDataTable().DefaultView;
+
+                TextBoxRowsNumMatrixB.Text = _matrixB.RowsNum.ToString();
+                TextBoxColumnsNumMatrixB.Text = _matrixB.ColumnsNum.ToString();
             }
             catch (NullReferenceException)
             {
                 MessageBox.Show("Матрица не была создана.", "Ошибка");
-                return;
             }
-            _matrixB = _matrixB.Transpose();
-
-            DataGridMatrixB.DataContext = _matrixB.ToDataTable().DefaultView;
-
-            TextBoxRowsNumMatrixB.Text = _matrixB.RowsNum.ToString();
-            TextBoxColumnsNumMatrixB.Text = _matrixB.ColumnsNum.ToString();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " матрицы B.", "Ошибка");
+            }
         }
         #endregion
 
-        #region ButtonTransposeMatrixB_Click
+        #region ButtonTransposeMatrixC_Click
         /// <summary>
         /// Производит транспонирование матрицы B при нажатии на кнопку <see cref="ButtonTransposeMatrixC"/> 
         /// и помещает результат в <see cref="DataGrid"/>
@@ -246,15 +254,15 @@ namespace MatrixCalculator
             try
             {
                 _matrixC = GetMatrixFromDataGrid(DataGridMatrixC);
+
+                _matrixC = _matrixC.Transpose();
+
+                DataGridMatrixC.DataContext = _matrixC.ToDataTable().DefaultView;
             }
             catch (NullReferenceException)
             {
                 MessageBox.Show("Матрица не была создана.", "Ошибка");
-                return;
             }
-            _matrixC = _matrixC.Transpose();
-
-            DataGridMatrixC.DataContext = _matrixC.ToDataTable().DefaultView;
         }
         #endregion
 
@@ -274,6 +282,10 @@ namespace MatrixCalculator
             catch (NullReferenceException)
             {
                 MessageBox.Show("Матрица не была создана.", "Ошибка");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " матрицы А.", "Ошибка");
             }
         }
         #endregion
@@ -317,6 +329,10 @@ namespace MatrixCalculator
             catch (NullReferenceException)
             {
                 MessageBox.Show("Матрица не была создана.", "Ошибка");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " матрицы B.", "Ошибка");
             }
         }
         #endregion

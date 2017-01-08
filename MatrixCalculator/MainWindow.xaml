@@ -51,7 +51,10 @@
     <Grid Margin="0,0,0,0.5">
         <DataGrid x:Name="DataGridMatrixA" Margin="62,75,0,0" />
         <DataGrid x:Name="DataGridMatrixB" Margin="374,75,0,0" />
-        <DataGrid x:Name="DataGridMatrixC" Margin="701,75,0,0" />
+        <DataGrid
+            x:Name="DataGridMatrixC"
+            Margin="701,75,0,0"
+            IsReadOnly="True" />
         <StackPanel
             Width="47"
             Height="auto"
